@@ -118,29 +118,35 @@ public with sharing class DMLOperationsTest {
 
 
     @IsTest
-    static void testUpsertOpportunityForAccount() {
+    static void testUpsertOpportunityList() {
         // Create a test Account first
         Account testAcc = new Account(Name = 'Test Account');
         insert testAcc;
+
+        List<Opportunity> opportunities = new List<Opportunity>();
+        
+        // Create a test Opportunity
+        Opportunity insertedOpp = new Opportunity(Name = 'insertedOpp Opportunity', AccountId = testAcc.Id, StageName = 'Prospecting', CloseDate = Date.today(), Amount = 10000000);
+        insert insertedOpp;
+
+        Opportunity notInsertedOpp = new Opportunity(Name = 'notInsertedOpp Opportunity', AccountId = testAcc.Id, StageName = 'Prospecting', CloseDate = Date.today());
+        opportunities.add(insertedOpp);
+        opportunities.add(notInsertedOpp);
+
     
         // Call the method to test with the Account Id
-        DMLOperations.upsertOpportunityForAccount(testAcc.Id);
+        DMLOperations.upsertOpportunityList(opportunities);
     
         // Retrieve the Opportunity from the database
-        Opportunity retrievedOpp = [SELECT Id, Name, StageName FROM Opportunity WHERE AccountId = :testAcc.Id];
+        Opportunity[] retrievedOpp = [SELECT Id, Name, CloseDate, StageName, Amount FROM Opportunity];
     
         // Assert that the Opportunity was successfully upserted
-        System.assertEquals(String.valueOf(testAcc.Id), retrievedOpp.Name, 'The name of the Opportunity should match the Account Id');
-        System.assertEquals('Prospecting', retrievedOpp.StageName, 'The stage of the Opportunity should be set correctly');
-    
-        // Call the method to test again to check the upsert operation
-        DMLOperations.upsertOpportunityForAccount(testAcc.Id);
-    
-        // Retrieve the updated Opportunity from the database
-        Opportunity updatedOpp = [SELECT Id, Name, StageName FROM Opportunity WHERE AccountId = :testAcc.Id];
-    
-        // Assert that the Opportunity was successfully updated
-        System.assertEquals(String.valueOf(testAcc.Id), updatedOpp.Name, 'The name of the updated Opportunity should match the Account Id');
+        System.assertEquals(opportunities.size(), retrievedOpp.size(), 'The number of upserted Opportunities should match the number of Opportunity names provided');
+        for (Opportunity opp : retrievedOpp) {
+            System.assertEquals('Qualification', opp.StageName, 'The stage should be updated to Qualification');
+            System.assertEquals(Date.today().addMonths(3), opp.CloseDate, 'The CloseDate should be updated to 3 months from today');
+            System.assertEquals(50000, opp.Amount, 'The Amount should be updated to 50000');
+        }
     }
     
     @IsTest

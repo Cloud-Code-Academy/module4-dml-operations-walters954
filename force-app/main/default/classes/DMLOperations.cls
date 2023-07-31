@@ -79,6 +79,7 @@ public with sharing class DMLOperations {
      */
     public static void updateContactLastName(Id contactId, String newLastName) {
         // Retrieve the Contact from the database
+        // [SELECT Id FROM Contact WHERE Id = :contactId]
 
         // Update the Contact's last name
 
@@ -93,6 +94,7 @@ public with sharing class DMLOperations {
      */
     public static void updateOpportunityStage(Id oppId, String newStage) {
         // Retrieve the Opportunity from the database
+        // [SELECT Id FROM Opportunity WHERE Id = :oppId]
 
         // Update the Opportunity's stage
 
@@ -107,23 +109,25 @@ public with sharing class DMLOperations {
      * @param newIndustry The new industry for the account.
      */
     public static void updateAccountFields(Id accountId, String newName, String newIndustry) {
+        // Query the account
+        // [SELECT Id FROM Account WHERE Id = :accountId]
+
         // Update the Account with the given Id with the new name and industry
     }
 
 
     /**
-     * This method creates or updates an Opportunity related to an Account.
-     * The Opportunity's Name is the same as the Account's Id.
-     * The Opportunity's Stage is set to Prospecting.
+     * This method creates or updates an Opportunities
+     * The Opportunity's Stage is set to Qualification.
      * The Opportunity's Close Date is set to 3 months from today.
-     *
-     * @param accountId The Account Id related to the Opportunity.
+     * The Opportunity's Amount is set to 50000.
+     * @param list of Opportunities to be changed then upserted.
      */
-    public static void upsertOpportunityForAccount(Id accountId) {
-        // Prepare an Opportunity for the Account
-        // Set the Opportunity's Name to the Account's Id
-        // Set the Opportunity's Stage to Prospecting
-        // Set the Opportunity's Close Date to 3 months from today
+    public static void upsertOpportunityList(List<Opportunity> opportunities) {
+        // Iterate over the opportunities
+            // Set the Opportunity's Stage to Qualification
+            // Set the Opportunity's Close Date to 3 months from today
+            // Set the Opportunity's Amount to 50000
 
         // Upsert the Opportunity
     }
