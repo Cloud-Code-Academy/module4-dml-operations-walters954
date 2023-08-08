@@ -133,7 +133,8 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method upserts a list of Opportunities under a specified Account. 
+     * This method insert or updates opportunities from list of names.
+     * Associate the Opportunities with account that has the name accountName.
      * There should be an Opportunity for each name provided.
      *
      * @param accountName The name of the Account.
