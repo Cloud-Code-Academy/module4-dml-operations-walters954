@@ -2,10 +2,10 @@
  * The DMLOperations class serves as a deep dive into Data Manipulation Language (DML) in Apex.
  * It covers fundamental DML operations such as insert, update, upsert, and delete.
  *
- * This class introduces developers to the concept of manipulating Salesforce records in Apex. 
- * It discusses how to use DML operations to create, update, and delete records. 
+ * This class introduces developers to the concept of manipulating Salesforce records in Apex.
+ * It discusses how to use DML operations to create, update, and delete records.
  * This class uses standard Salesforce objects like Account, Contact, and Opportunity for demonstration.
- * 
+ *
  * Topics covered in this class include:
  * - Understanding how to use insert DML operation to create records in Salesforce.
  * - Understanding how to use update and upsert DML operations to update existing records in Salesforce.
@@ -13,20 +13,18 @@
  *
  * Users of this class can expect to gain a strong understanding of DML operations in Apex and
  * be prepared for more advanced topics in Salesforce development.
- * 
- * The methods within this class serve as practical examples of different DML operations, 
+ *
+ * The methods within this class serve as practical examples of different DML operations,
  * allowing developers to learn through practice and examples.
- * 
+ *
  * @author Your Name
- * @version 1.0
  */
 
 
 public with sharing class DMLOperations {
     /**
-     * This method creates a new Account object and inserts it into the database.
+     * Create a new Account object and inserts it into the database.
      * The Account will have a random name for uniqueness.
-     *
      * @return The Id of the newly created Account.
      */
     public static Id insertNewAccount() {
@@ -41,8 +39,7 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method creates a new Account with the specified name and industry.
-     *
+     * Create a new Account with the specified name and industry provided.
      * @param name The name of the account to be created.
      * @param industry The industry of the account to be created.
      */
@@ -54,8 +51,7 @@ public with sharing class DMLOperations {
 
     
     /**
-     * This method creates a new Contact object linked to an existing Account and inserts it into the database.
-     *
+     * Create a new Contact and link it to the Account id provided then inserts it into the database.
      * @param accountId The Id of the Account to link the Contact to.
      * @return The Id of the newly created Contact.
      */
@@ -72,8 +68,8 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method updates the last name of a Contact in the database.
-     *
+     * Update the last name of a Contact in the database.
+     * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param contactId The Id of the Contact to update.
      * @param newLastName The new last name for the Contact.
      */
@@ -87,8 +83,8 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method updates the stage of an Opportunity in the database.
-     *
+     * Update the stage of an Opportunity in the database.
+     * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param oppId The Id of the Opportunity to update.
      * @param newStage The new stage for the Opportunity.
      */
@@ -102,8 +98,8 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method updates the Account's Name and Industry given an Account Id.
-     *
+     * Update the Account's Name and Industry given an Account Id.
+     * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param accountId The Id of the account to be updated.
      * @param newName The new name for the account.
      * @param newIndustry The new industry for the account.
@@ -117,7 +113,7 @@ public with sharing class DMLOperations {
 
 
     /**
-     * This method creates or updates an Opportunities
+     * Create or updates an Opportunities
      * The Opportunity's Stage is set to Qualification.
      * The Opportunity's Close Date is set to 3 months from today.
      * The Opportunity's Amount is set to 50000.
@@ -133,10 +129,9 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method insert or updates opportunities from list of names.
+     * Insert or updates opportunities from list of names.
      * Associate the Opportunities with account that has the name accountName.
-     * There should be an Opportunity for each name provided.
-     *
+     * There should be an Opportunity for each name provided in the list.
      * @param accountName The name of the Account.
      * @param oppNames The list of Opportunity names.
      */
@@ -147,11 +142,10 @@ public with sharing class DMLOperations {
     }
 
     /**
-     * This method takes a list of contacts and their corresponding account names, upserts the accounts,
-     * links the contacts to the accounts, and then upserts the contacts.
-     * Links the records by the last letter of the contact's last name and the account name.
-     * Example - Contact: John Doe 1, Account: Doe Inc. 1
-     *
+     * Take a list of contacts and their corresponding account names
+     * Link the contacts to the accounts by the last letter of the contact's last name and the account name.
+     * Some of the account and contacts may already exist in the database.
+     * Example - Contact: John Doe 1 Linked to Account: Doe Inc. 1, Contact: Jane Doe 2 Linked to Account: Jane Inc. 2
      * @param contactsToUpsert List of Contacts to be upserted.
      * @param accountNames List of Account names corresponding to the Contacts.
      */
@@ -171,8 +165,7 @@ public with sharing class DMLOperations {
 
 
     /**
-     * This method inserts a list of Leads and then deletes them.
-     *
+     * Insert a list of Leads and then deletes them.
      * @param leadNames The list of Lead names to be inserted.
      */
     public static void insertAndDeleteLeads(List<String> leadNames) {
@@ -185,8 +178,7 @@ public with sharing class DMLOperations {
 
 
     /**
-     * This method creates a number of cases for the given accountId, then deletes them.
-     *
+     * Dynamically create the number of cases and relate it to the accountId, then deletes them.
      * @param accountId The account for which the cases will be created and then deleted.
      * @param numOfCases The number of cases to create.
      */
