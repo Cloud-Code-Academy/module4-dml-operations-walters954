@@ -143,7 +143,7 @@ public with sharing class DMLOperations {
 
     /**
      * Take a list of contacts and their corresponding account names
-     * Link the contacts to the accounts by the last letter of the contact's last name and the account name.
+     * Link the contacts to the accounts by the last character of the contact's last name and the account name.
      * Some of the account and contacts may already exist in the database.
      * Example - Contact: John Doe 1 Linked to Account: Doe Inc. 1, Contact: Jane Doe 2 Linked to Account: Jane Inc. 2
      * @param contactsToUpsert List of Contacts to be upserted.
@@ -155,10 +155,10 @@ public with sharing class DMLOperations {
         // Upsert the Accounts
 
         // Loop through each upserted Account
-            // Add the Account's Id to a Map with the last letter of the Account's name as the key 
+            // Add the Account's Id to a Map with the last character of the Account's name as the key 
 
         // Loop through each Contact
-            // Set the AccountId of the Contact to the Id of the Account with the same last letter of the Contact's last name
+            // Set the AccountId of the Contact to the Id of the Account with the same last character of the Contact's last name
 
         // Upsert the Contacts
     }
