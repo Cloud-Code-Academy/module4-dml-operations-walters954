@@ -191,38 +191,56 @@ public with sharing class DMLOperationsTest {
     }
 
     @IsTest
-    static void testUpsertAccountsWithContacts() {
-        // Prepare the Accounts
-        Account acc = new Account(Name = 'Test Account 5');
-        insert acc;
+	static void testUpsertAccount() {
+		String accountName = 'Test Account';
 
-        // Prepare the Contacts and Account names
-        List<Contact> contactsToUpsert = new List<Contact> {
-            new Contact(LastName = 'Test Contact 1', AccountId = acc.Id),
-            new Contact(LastName = 'Test Contact 2'),
-            new Contact(LastName = 'Test Contact 3'),
-            new Contact(LastName = 'Test Contact 4')
-        };
+		// Test creating a new account
+		Test.startTest();
+		Account upsertedAccount = DMLOperations.upsertAccount(accountName);
 
-        List<String> accountNames = new List<String>{ 'Test Account 1', 'Test Account 4', 'Test Account 2', 'Test Account 3' };
+		// Verify that the account was created
+		System.assertNotEquals(null, upsertedAccount.Id, 'Account should be created with an Id');
+		System.assertEquals(accountName, upsertedAccount.Name, 'Account name should match');
 
-        // Call the method to test
-        DMLOperations.upsertAccountsWithContacts(contactsToUpsert, accountNames);
-        accountNames.add(acc.Name);
+		// Test updating the existing account
+		String updatedAccountName = 'Test Account';
+		upsertedAccount.Name = updatedAccountName;
 
-        // Query the Contacts and Accounts from the database
-        List<Contact> retrievedContacts = [SELECT Id, LastName, Account.Name FROM Contact WHERE LastName IN ('Test Contact 1', 'Test Contact 2', 'Test Contact 3', 'Test Contact 4')];
-        List<Account> retrievedAccounts = [SELECT Id, Name FROM Account WHERE Name IN :accountNames];
+		Account updatedAccount = DMLOperations.upsertAccount(updatedAccountName);
+		Test.stopTest();
 
-        // Assert that the Accounts and Contacts have been upserted
-        System.assertEquals(accountNames.size(), retrievedAccounts.size(), 'All Accounts should have been upserted');
-        System.assertEquals(contactsToUpsert.size(), retrievedContacts.size(), 'All Contacts should have been upserted');
+		// Verify that the account was updated
+		System.assertEquals(updatedAccount.Id, upsertedAccount.Id, 'Account Id should remain the same after update');
+	}
 
-        // Assert that each Contact is linked to its Account
-        for (Contact contact : retrievedContacts) {
-            System.assertEquals(contact.Account.Name, contact.LastName.replace('Test Contact ', 'Test Account '), 'Contact should be linked to its Account');
-        }
-    }
+    @IsTest
+	static void testUpsertAccountsWithContacts() {
+		Account testAccount = new Account(Name = 'Doe');
+		insert testAccount;
+		// Create test contacts with last names matching account names
+		List<Contact> testContacts = new List<Contact>{
+			new Contact(LastName = 'Doe', FirstName = 'John'),
+			new Contact(LastName = 'Smith', FirstName = 'Jane')
+		};
+
+		Test.startTest();
+		DMLOperations.upsertAccountsWithContacts(testContacts);
+		Test.stopTest();
+
+		List<Account> accounts = [SELECT Id FROM Account];
+		System.assertEquals(2, accounts.size(), 'Two accounts should be created');
+
+		// Query the upserted contacts to verify account links
+		List<Contact> upsertedContacts = [
+			SELECT Id, LastName, AccountId, Account.Name
+			FROM Contact
+			WHERE Id IN :testContacts
+		];
+		for (Contact c : upsertedContacts) {
+			System.assertNotEquals(null, c.AccountId, 'Contact should be linked to an Account');
+			System.assertEquals(c.LastName, c.Account.Name, 'Contact last name should match Account name');
+		}
+	}
     
     @IsTest
     static void testInsertAndDeleteLeads() {

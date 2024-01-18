@@ -140,29 +140,45 @@ public with sharing class DMLOperations {
             // Create an Opportunity with the given name
             // Add the Opportunity to the list
     }
+    
+    /**
+	 * Upserts an Account with the specified name.
+	 * If an Account with the given name already exists, it updates that Account.
+	 * If no such Account exists, it creates a new one.
+	 * @param accountName The name of the Account to be upserted.
+	 * @return The Account that was upserted.
+	 */
+	public static Account upsertAccount(String accountName) {
+		// Query for the Account
+		List<Account> accounts = [SELECT Id FROM Account WHERE Name = :accountName];
+
+		// if the Account exists, update it
+
+		// otherwise, create a new Account
+
+		// Upsert the Account
+		return null;
+	}
 
     /**
-     * Take a list of contacts and their corresponding account names
-     * Link the contacts to the accounts by the last character of the contact's last name and the account name.
-     * Some of the account and contacts may already exist in the database.
-     * Example - Contact: John Doe 1 Linked to Account: Doe Inc. 1, Contact: Jane Doe 2 Linked to Account: Jane Inc. 2
-     * @param contactsToUpsert List of Contacts to be upserted.
-     * @param accountNames List of Account names corresponding to the Contacts.
-     */
-    public static void upsertAccountsWithContacts(List<Contact> contactsToUpsert, List<String> accountNames) {
-        // Loop through each Account name
+	 * Upserts accounts and links contacts to them based on the contact's last name and account name.
+	 * Create or use existing account with contact last name. (Hint: use previous upsertAccount method)
+	 * Contacts are then linked to these accounts based on a full last name match.
+     * Example Contact Last Name = Doe Link to Account Name = Doe 
+     * Example Contact Last Name = Jane Link to Account Name = Jane
+	 * @param contactsToUpsert List of Contacts to be upserted and linked to accounts.
+	 */
+	public static void upsertAccountsWithContacts(List<Contact> contactsToUpsert) {
+		// Loop through each Contact
 
-        // Upsert the Accounts
+		// Extract the Account Name from Contact's LastName
 
-        // Loop through each upserted Account
-            // Add the Account's Id to a Map with the last character of the Account's name as the key 
+		// Get the account based on the name or create one if it doesn't exist
 
-        // Loop through each Contact
-            // Set the AccountId of the Contact to the Id of the Account with the same last character of the Contact's last name
+		// Link the Contact to its Account using the Account Id
 
-        // Upsert the Contacts
-    }
-
+		// Upsert the Contacts
+	}
 
     /**
      * Insert a list of Leads and then deletes them.
