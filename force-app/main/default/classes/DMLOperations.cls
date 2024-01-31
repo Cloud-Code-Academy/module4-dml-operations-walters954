@@ -22,7 +22,9 @@
 
 
 public with sharing class DMLOperations {
+
     /**
+     * Question 1
      * Create a new Account object and inserts it into the database.
      * The Account will have a random name for uniqueness.
      * @return The Id of the newly created Account.
@@ -39,6 +41,7 @@ public with sharing class DMLOperations {
     }
 
     /**
+     * Question 2
      * Create a new Account with the specified name and industry provided.
      * @param name The name of the account to be created.
      * @param industry The industry of the account to be created.
@@ -51,6 +54,7 @@ public with sharing class DMLOperations {
 
     
     /**
+     * Question 3
      * Create a new Contact and link it to the Account id provided then inserts it into the database.
      * @param accountId The Id of the Account to link the Contact to.
      * @return The Id of the newly created Contact.
@@ -68,6 +72,7 @@ public with sharing class DMLOperations {
     }
 
     /**
+     * Question 4
      * Update the last name of a Contact in the database.
      * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param contactId The Id of the Contact to update.
@@ -83,6 +88,7 @@ public with sharing class DMLOperations {
     }
 
     /**
+     * Question 5
      * Update the stage of an Opportunity in the database.
      * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param oppId The Id of the Opportunity to update.
@@ -98,6 +104,7 @@ public with sharing class DMLOperations {
     }
 
     /**
+     * Question 6
      * Update the Account's Name and Industry given an Account Id.
      * Resource: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
      * @param accountId The Id of the account to be updated.
@@ -113,6 +120,7 @@ public with sharing class DMLOperations {
 
 
     /**
+     * Question 7
      * Create or updates an Opportunities
      * The Opportunity's Stage is set to Qualification.
      * The Opportunity's Close Date is set to 3 months from today.
@@ -129,6 +137,7 @@ public with sharing class DMLOperations {
     }
 
     /**
+     * Question 8
      * Insert or updates opportunities from list of names.
      * Associate the Opportunities with account that has the name accountName.
      * There should be an Opportunity for each name provided in the list.
@@ -142,6 +151,7 @@ public with sharing class DMLOperations {
     }
     
     /**
+     * Question 9
 	 * Upserts an Account with the specified name.
 	 * If an Account with the given name already exists, it updates that Account.
 	 * If no such Account exists, it creates a new one.
@@ -161,6 +171,7 @@ public with sharing class DMLOperations {
 	}
 
     /**
+     * Question 10
 	 * Upserts accounts and links contacts to them based on the contact's last name and account name.
 	 * Create or use existing account with contact last name. (Hint: use previous upsertAccount method)
 	 * Contacts are then linked to these accounts based on a full last name match.
@@ -181,6 +192,7 @@ public with sharing class DMLOperations {
 	}
 
     /**
+     * Question 11
      * Insert a list of Leads and then deletes them.
      * @param leadNames The list of Lead names to be inserted.
      */
@@ -194,6 +206,7 @@ public with sharing class DMLOperations {
 
 
     /**
+     * Question 12
      * Dynamically create the number of cases and relate it to the accountId, then deletes them.
      * @param accountId The account for which the cases will be created and then deleted.
      * @param numOfCases The number of cases to create.

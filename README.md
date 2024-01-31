@@ -1,9 +1,9 @@
-# Developer Kickstart Week 4: DML Operations
+# Developer Kickstart Module 4: DML Operations
 
-This project is part of the Developer Kickstart Week 4 curriculum at Cloud Code Academy. It's designed to help beginner Salesforce developers learn and practice the fundamental operations of the Data Manipulation Language (DML) in Apex. The focus is on the Insert, Update, Upsert, and Delete operations, all of which are essential in manipulating Salesforce data.
+This repository is part of the Developer Kickstart Module 4 curriculum at Cloud Code Academy. It's designed to help beginner Salesforce developers learn and practice the fundamental operations of the Data Manipulation Language (DML) in Apex. The focus is on the Insert, Update, Upsert, and Delete operations, all of which are essential in manipulating Salesforce data.
 
 ## Goals of the Practice
-Through this practice project, you'll gain foundational knowledge about:
+Through this practice repository, you'll gain foundational knowledge about:
 - Understanding the different types of DML operations in Apex (Insert, Update, Upsert, and Delete).
 - How to use DML operations to create, update, and delete records in Salesforce.
 - The structure and usage of Salesforce standard objects like Account, Contact, Opportunity, and Lead.
@@ -17,14 +17,12 @@ Certain test methods related to the Book and Person classes are currently commen
 ## Setup
 [Video Overview](https://vimeo.com/839597882/46fc06d93e)
 
-To get started, you'll need a Salesforce Trailhead Playground. If you don't have one, you can create it for free from any Trailhead module.
-
-After you've set up your Trailhead Playground:
-
-1. Install Visual Studio Code from [here](https://code.visualstudio.com/download).
-2. Install Salesforce Extension Pack in Visual Studio Code. This can be done by searching 'Salesforce Extension Pack' in the Extensions view in VS Code and clicking Install.
-3. Authorize your Trailhead Playground in Visual Studio Code. Press `Ctrl + Shift + P` to open the command palette and type 'SFDX: Authorize an Org', then press Enter. Follow the steps in the browser to log in to your Playground, then return to VS Code.
-4. Deploy the Apex Class by right clicking on the `VariablesDatatypesOperators` and  `VariablesDatatypesOperatorsTest` file a using the option SFDX: Deploy Source to Org.
+## Getting Started Checklist
+1. Create/Configure a trailhead playground or developer org to do your work throughout this program.
+2. Install Visual Studio Code from [here](https://code.visualstudio.com/download).
+3. Install Salesforce Extension Pack in Visual Studio Code. This can be done by searching 'Salesforce Extension Pack' in the Extensions view in VS Code and clicking Install.
+4. Authorize your org in Visual Studio Code. Press `Ctrl + Shift + P` to open the command palette and type 'SFDX: Authorize an Org', then press Enter. Follow the steps in the browser to log in to your org, then return to VS Code.
+5. Make sure to save and deploy your changes into Salesforce from your local machine. This can be done through the command pallet or right clicking the file you want to deploy and using the option `SFDX: Deploy this source to org`
 
 ## Running the Test Classes
 
