@@ -173,7 +173,7 @@ public with sharing class DMLOperations {
     /**
      * Question 10
 	 * Upserts accounts and links contacts to them based on the contact's last name and account name.
-	 * Create or use existing account with contact last name. (Hint: use previous upsertAccount method)
+	 * Create or use existing account with contact last name. (Hint: use previous upsertAccount method - this may cause bad practices but for learning purposes it's okay.)
 	 * Contacts are then linked to these accounts based on a full last name match.
      * Example Contact Last Name = Doe Link to Account Name = Doe 
      * Example Contact Last Name = Jane Link to Account Name = Jane
