@@ -153,8 +153,8 @@ public with sharing class DMLOperations {
     /**
      * Question 9
 	 * Upserts an Account with the specified name.
-	 * If an Account with the given name already exists, it updates that Account.
-	 * If no such Account exists, it creates a new one.
+	 * If an Account with the given name already exists, update the description to "Updated Account".
+	 * If no such Account exists, it creates a new one and sets the description to "New Account".
 	 * @param accountName The name of the Account to be upserted.
 	 * @return The Account that was upserted.
 	 */
@@ -162,9 +162,9 @@ public with sharing class DMLOperations {
 		// Query for the Account
 		List<Account> accounts = [SELECT Id FROM Account WHERE Name = :accountName];
 
-		// if the Account exists, update it
+		// if the Account exists, update the description
 
-		// otherwise, create a new Account
+		// otherwise, create a new Account and set the description
 
 		// Upsert the Account
 		return null;

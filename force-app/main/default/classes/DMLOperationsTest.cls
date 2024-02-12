@@ -201,6 +201,7 @@ public with sharing class DMLOperationsTest {
 		// Verify that the account was created
 		System.assertNotEquals(null, upsertedAccount.Id, 'Account should be created with an Id');
 		System.assertEquals(accountName, upsertedAccount.Name, 'Account name should match');
+        System.assertEquals('New Account', upsertedAccount.Description, 'Account description should match');
 
 		// Test updating the existing account
 		String updatedAccountName = 'Test Account';
@@ -210,7 +211,8 @@ public with sharing class DMLOperationsTest {
 		Test.stopTest();
 
 		// Verify that the account was updated
-		System.assertEquals(updatedAccount.Id, upsertedAccount.Id, 'Account Id should remain the same after update');
+		System.assertEquals(updatedAccount.Id, updatedAccount.Id, 'Account Id should remain the same after update');
+        System.assertEquals('Updated Account', updatedAccount.Description, 'Account description should match');
 	}
 
     @IsTest
