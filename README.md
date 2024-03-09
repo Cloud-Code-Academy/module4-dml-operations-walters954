@@ -15,7 +15,8 @@ This foundational knowledge will prepare you for more advanced topics in Salesfo
 Certain test methods related to the Book and Person classes are currently commented out and will need to be uncommented and deployed once the relevant classes are set up.
 
 ## Setup
-[Video Overview](https://vimeo.com/839597882/46fc06d93e)
+[Setup Overview](https://learn.cloudcodeacademy.com/courses/salesforce-developer-kickstart-program/lectures/47317669)
+
 
 ## Getting Started Checklist
 1. Create/Configure a trailhead playground or developer org to do your work throughout this program.
