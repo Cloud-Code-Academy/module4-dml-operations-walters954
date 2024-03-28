@@ -128,12 +128,13 @@ public with sharing class DMLOperations {
      * @param list of Opportunities to be changed then upserted.
      */
     public static void upsertOpportunityList(List<Opportunity> opportunities) {
-        // Iterate over the opportunities
-            // Set the Opportunity's Stage to Qualification
-            // Set the Opportunity's Close Date to 3 months from today
-            // Set the Opportunity's Amount to 50000
-
-        // Upsert the Opportunity
+        for (Opportunity opp : opportunities) {
+            opp.StageName = 'Qualification';
+            opp.CloseDate = Date.today().addMonths(3);
+            opp.Amount = 50000;
+        }
+        // Upsert the opportunities List so that records are either updated or created
+        upsert opportunities;
     }
 
     /**
@@ -172,11 +173,11 @@ public with sharing class DMLOperations {
 
     /**
      * Question 10
-	 * Upserts accounts and links contacts to them based on the contact's last name and account name.
-	 * Create or use existing account with contact last name. (Hint: use previous upsertAccount method - this may cause bad practices but for learning purposes it's okay.)
-	 * Contacts are then linked to these accounts based on a full last name match.
-     * Example Contact Last Name = Doe Link to Account Name = Doe 
-     * Example Contact Last Name = Jane Link to Account Name = Jane
+	 * Manage the association between Contacts and Accounts
+	 * Ensure that for each Contact in the provided list, there is a corresponding Account Name that matches the Contact's last name.
+	 * If such an Account does not exist, the method creates it; if it does, the method ensures the Contact is associated with it. (Hint: use previous upsertAccount method - this may cause bad practices but for learning purposes it's okay.)
+     * Example Contact.LastName = 'Doe' Link to Account.Name = 'Doe' 
+     * Example Contact.LastName = 'Jane' Link to Account.Name = 'Jane'
 	 * @param contactsToUpsert List of Contacts to be upserted and linked to accounts.
 	 */
 	public static void upsertAccountsWithContacts(List<Contact> contactsToUpsert) {
