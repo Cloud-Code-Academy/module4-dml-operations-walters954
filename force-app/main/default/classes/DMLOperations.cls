@@ -128,11 +128,10 @@ public with sharing class DMLOperations {
      * @param list of Opportunities to be changed then upserted.
      */
     public static void upsertOpportunityList(List<Opportunity> opportunities) {
-        for (Opportunity opp : opportunities) {
-            opp.StageName = 'Qualification';
-            opp.CloseDate = Date.today().addMonths(3);
-            opp.Amount = 50000;
-        }
+        // Loop through each Opportunity in the list
+            // Set the Opportunity's Stage to Qualification
+            // Set the Opportunity's Close Date to 3 months from today
+            // Set the Opportunity's Amount to 50000
         // Upsert the opportunities List so that records are either updated or created
         upsert opportunities;
     }
