@@ -141,6 +141,7 @@ public with sharing class DMLOperations {
      * Associate the Opportunities with account that has the name accountName.
      * There should be an Opportunity for each name provided in the list.
      * HINT: The account may or may not exists in the database but is required for opportunity creation. Consider how upsert operation can help with this.
+     * HINT: There should not be duplicate opportunites based on the name
      * @param accountName The name of the Account.
      * @param oppNames The list of Opportunity names.
      */
